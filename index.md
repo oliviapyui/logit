@@ -275,7 +275,7 @@ Before we actually build our model, let's visualise how our data look like using
        x = "\naltitude + distance + NoOfPools + NoOfSites+\navrain + meanmin + meanmax"))
 ```
 
-++++ INSERT plot_1 +++++
+<center><img src="{{ site.baseurl }}/image/plot_1.png" alt="Img" style="width: 700px; height: 550px"/></center>
 Figure caption
 
 The plot shows how the probability of the presence of frogs varies with all the environmental variables. The curve doesn't touch the top which tells us that the probability of presence is quite low. Also, the direction of the curve implies that the probability of the frogs' presence decreases with increasing values of the explanatory variables.
@@ -490,7 +490,7 @@ Let's visualise our new model now and compare it with our first plot where we co
          x = "\nDistance to the nearest extant population (m)"))
 ```
 
-+++ INSERT plot_2 and plot_1 +++++
+<left><img src="{{ site.baseurl }}/image/plot_1.png" alt="Img" style="width: 700px; height: 550px"/></left><right><img src="{{ site.baseurl }}/image/plot_2.png" alt="Img" style="width: 700px; height: 550px"/></right>
 
 We can see that the 2 plots look very similar, even when we take away all other environmental variables except "distance". This confirms our results that the "distance" variable is the most significant one.
 
@@ -598,7 +598,8 @@ Let's plot the prediction graph to visualise our predictions on the test data!
          x = "\nDistance to nearest extant population (m)",  #  "\n" adds space above x-axis title
          y = "Probability of frogs' presence\n"))
 ```
-<center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img" style="width: 700px; height: 580px"/></center>
+
+<center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img" style="width: 700px; height: 550px"/></center>
 
 
 <hr>
