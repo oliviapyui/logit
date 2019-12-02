@@ -91,22 +91,24 @@ table(up_train$Class)
            aes(x = altitude + distance + NoOfPools + NoOfSites + 
                    avrain + meanmin + meanmax, 
                y = as.numeric(as.character(Class)))) +  # change "Class" to numeric values
-   geom_point(alpha = 0.2, colour = "rosybrown2", size = 5) +  # plot the classes of each observation
+   geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +  # plot the classes of each observation
    geom_smooth(method = "glm",  # add the curve
                method.args = list(family = "binomial"),
                colour = "paleturquoise3",  # colour of the curve
                fill = "azure3",
-               size = 2) +  # colour of the SE area
+               size = 1) +  # colour of the SE area
    theme_bw() +
    theme(panel.grid.minor = element_blank(),
          panel.grid.major.x= element_blank(),
          plot.margin = unit(c(1,1,1,1), units = , "cm"),
-         plot.title = element_text(face = "bold", size = 18, hjust = 0),
-         axis.text = element_text(size = 12),
-         axis.title = element_text(size = 14)) +
-   labs(title = "Logistic Regression Model\n",  #  "\n" indicates where the space is added
+         plot.title = element_text(face = "bold", size = 10, hjust = 0),
+         axis.text = element_text(size = 8),
+         axis.title = element_text(size = 8)) +
+   labs(title = "Logistic Regression Model 1\n",  #  "\n" indicates where the space is added
         y = "Probability of the presence of frogs\n",
-        x = "\naltitude + distance + NoOfPools + NoOfSites+\navrain + meanmin + meanmax"))
+        x = "\naltitude + distance + NoOfPools + NoOfSites+
+        \navrain + meanmin + meanmax") +
+  ggsave("image/plot_1.png", width = 5, height = 4, dpi = 800))
 
 # Using generalised linear model
 model <- glm(Class ~. ,  # "." indicated all other variables
@@ -142,22 +144,23 @@ anova(model_new, test = "Chisq")
     ggplot(up_train, 
            aes(x = distance, 
                y = as.numeric(as.character(Class)))) +  
-    geom_point(alpha = 0.2, colour = "rosybrown2", size = 5) +  
+    geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +  
     geom_smooth(method = "glm",  # add the curve
                 method.args = list(family = "binomial"),
                 colour = "paleturquoise3", 
                 fill = "azure3",
-                size = 2) +
+                size = 1) +
     theme_bw() +
     theme(panel.grid.minor = element_blank(),
           panel.grid.major.x= element_blank(),
           plot.margin = unit(c(1,1,1,1), units = , "cm"),
-          plot.title = element_text(face = "bold", size = 18, hjust = 0),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 14)) +
+          plot.title = element_text(face = "bold", size = 10, hjust = 0),
+          axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8)) +
     labs(title = "Logistic Regression Model 2\n",  
          y = "Probability of the presence of frogs\n",
-         x = "\nDistance to the nearest extant population (m)"))
+         x = "\nDistance to the nearest extant population (m)") +
+    ggsave("image/plot_2.png", width = 5, height = 4, dpi = 800))
 
 
 # Predict the probabilities of presence on test data ----
@@ -222,6 +225,6 @@ accuracy <- mean(test_data$predict_class == test_data$pres.abs)
     labs(title = "Predicting frogs' presence on test data\n",
          x = "\nDistance to nearest extant population (m)",  #  "\n" adds space above x-axis title
          y = "Probability of the presence of frogs\n") +
-    ggsave("image/pred_plot.png", width = 5, height = 4))
+    ggsave("image/pred_plot.png", width = 5, height = 4, dpi = 800))
 
 
