@@ -598,7 +598,7 @@ Let's plot the prediction graph to visualise our predictions on the test data!
          x = "\nDistance to nearest extant population (m)",  #  "\n" adds space above x-axis title
          y = "Probability of frogs' presence\n"))
 ```
-<center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img" style="width: 700px; height: 500px"/></center>
+<center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img" style="width: 700px; height: 580px"/></center>
 
 
 <hr>
