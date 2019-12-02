@@ -204,23 +204,24 @@ accuracy <- mean(test_data$predict_class == test_data$pres.abs)
 # Plot the prediction graph ----
 
 (pred_plot <- ggplot(test_data, aes(x = distance, y = predict_class)) +
-    geom_point(alpha = 0.2, colour = "rosybrown2", size = 5) +
+    geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +
     stat_smooth(method = "glm", 
                 method.args = list(family = "binomial"),
                 colour = "indianred",
                 fill = "azure3",
-                size = 2) +
+                size = 1) +
     theme_bw() +
     theme(panel.grid.minor = element_blank(),
           panel.grid.major.x= element_blank(),
           plot.margin = unit(c(1,1,1,1), units = , "cm"),
-          plot.title = element_text(face = "bold", size = 18, hjust = 0),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 14)) +
+          plot.title = element_text(face = "bold", size = 10, hjust = 0),
+          axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8)) +
     scale_y_continuous(limits = c(0,1)) +  # Set min and max y values at 0 and 1 respectively
     scale_x_continuous(limits = c(min(test_data$distance), max(test_data$distance))) +
     labs(title = "Predicting frogs' presence on test data\n",
          x = "\nDistance to nearest extant population (m)",  #  "\n" adds space above x-axis title
-         y = "Probability of frogs' presence\n"))
+         y = "Probability of the presence of frogs\n") +
+    ggsave("image/pred_plot.png", width = 5, height = 4))
 
 
