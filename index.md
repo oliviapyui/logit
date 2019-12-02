@@ -33,6 +33,7 @@ This tutorial is the continuation of the tutorial on linear modelling, you can c
 
 In the first part of the tutorial, we've learned how to create a general linear model with a Gaussian data distribution, that is when the data are normally distributed and homoscedastic. We've also slightly looked at how to run a model with a Poisson or binomial distribution. However, that is not enough to give us a more accurate results. Here, we'll learn about 1) cleaning the dataset ready for modelling, 2) handling class imbalance, 3) building the logistic regression model and at last 4) predicting the accuracy of the test data.
 
+
 ## What is a logistic regression model and why?
 
 In linear regression, the response variable (y) can only be continuous. However, in some cases the response variable is categorial or discrete e.g. presence vs absence, true vs false, alive vs death. Therefore, we can't always use linear regression to model our output when the response variable is a binary categorial variable. This is where a logistic regression model comes into play. It gives us a mathematical equation to determine the probability of an event taken place.
@@ -40,12 +41,13 @@ In linear regression, the response variable (y) can only be continuous. However,
 <center><img src="{{ site.baseurl }}/image/image1.png" alt="Img" style="width: 800px;"/></center>
 Source: <a href="https://medium.com/@maithilijoshi6/a-comparison-between-linear-and-logistic-regression-8aea40867e2d" target="blank">Medium</a>
 
+
+
 The use of statistic models to predict the likely occurrence of an event is gaining importance in __wildlife management__ and __conservation planning__. Logistic regression in particular often helps ecologists to model the presence and absence of a species in the survey sites in respond to a set of environmental variables. It is also often used to predict a species' response to environmental perturbations.
 
 Here, we'll examine how the different environmental variables affect the presence of frogs and predict the probability of frogs presence. The frogs' presence here is a binomial variable because the response is either "present" or "absent".
 
 You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="blank">this GitHub repository</a>. Click `clone and download` and download the repository as a zip file, then unzip it.
-
 
 <a name="one"></a>
 
@@ -55,7 +57,6 @@ Open a new R script in RStudio and add in some details (e.g. title of the script
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1">
-
 ```r
 # Please install these packages first if you don't already have them
 # install.packages("DAAG")
@@ -79,7 +80,6 @@ Let's use `glimpse()` from `dplyr` to explore the dataset and see if there are a
 
 <a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code02" markdown="1">
-
 ```r
 # Explore the data ----
 
@@ -90,6 +90,8 @@ Data cleaning is an essential step in machine learning (i.e. the use of statisti
 
 `sapply()` passes an argument (i.e. `sum(is.na(x))`) to all elements of the input and returns the output as a vector or matrix. `lapply()` also does a similar job by returning the output as a list instead. One way to easily remember the difference between these two functions is that `lappy` starts with an 'l', as it suggests 'list'.
 
+<a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code03" markdown="1">
 ```r
 # 1. Prepare and clean the data ----
 
@@ -119,6 +121,8 @@ Onto our next step of data cleaning, we're going to discard the irrelevant data 
 
 The response (dependent) variable and explanatory (independent) variables are numeric. Variables with internal ordering can be size, age, year etc.. Since there are internal orderings of the explanatory variables, we don't have to convert them to factor variables. However, the response variable in logistic regression must be categorical, we'll have to change it to a factor with 2 levels.
 
+<a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code04" markdown="1">
 ```r
 # Select only the columns we need
 frogs <- select(frogs, -c(northing, easting))  # select all except northing and easting
@@ -137,6 +141,8 @@ In using machine learning algorithm, we'll usually split the data into a trainin
 
 To split the data, we'll use `createDataPartition()` from the package `caret`. `set.seed()` is a pseudorandom number generator. Setting the seed can give us reproducible results so you'll create the same training set and same statistical results as I do in this tutorial! In other words, if you change the number, you'll get a different results. You can try replacing "100" at the end of the tutorial to see the difference!
 
+<a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code05" markdown="1">
 ```r
 # 2. Data splitting ----
 
@@ -166,6 +172,8 @@ The class balance or called class bias, is the uneven proportion of "0" and "1" 
 
 The use of `createDataPartition` will preserve the proportion of the classes in the original `frogs` data set. Let's check the proportion of "0"s and "1"s in the train data.
 
+<a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code06" markdown="1">
 ```r
 # 3. Class imbalance ----
 
@@ -199,6 +207,8 @@ The decision to do upsampling or downsampling or even other methods depends on t
 
 Here, __upsampling__ is preferred as it implies no loss of information and we don't have a large dataset. We'll use `upSample()` from the package `caret`. If you want to perform downsampling, you can simply replace `upSample()` with `downSample()`.
 
+<a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code07" markdown="1">
 ```r
 # Upsampling ----
 
@@ -228,6 +238,8 @@ We now get an equal ratio of the class. The train data set is now ready for fitt
 
 Before we actually build our model, let's visualise how our data look like using `ggplot2`.
 
+<a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code08" markdown="1">
 ```r
 # 3. The logistic regression model ----
 
@@ -263,6 +275,8 @@ The plot shows how the probability of the presence of frogs varies with all the 
 
 Fitting a logistic regression model is very close to what we did in the previous tutorial for linear models, except that we're replacing `lm()` with `glm()` as logistic regression is a type of generalised linear model. We also add a family argument `family = "binomial"` where we specify the data distribution.
 
+<a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code09" markdown="1">
 ```r
 # Using generalised linear model
 model <- glm(Class ~. ,  # "." indicated all other variables
@@ -285,6 +299,8 @@ To check for multicollinearity, we can use the __variance inflation factor__ (VI
 
 To calculate VIF, we can use the `vif()` function.
 
+<a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code10" markdown="1">
 ```r
 # Checking assumptions ----
 
@@ -302,6 +318,8 @@ From the results obtained as shown above, we can see that the VIF values of "alt
 
 This is probably because temperature generally decreases with increasing altitude, so "altitude", "meanmin" and "meanmax" are highly correlated. Let's remove these variables from our old model to minimise overfitting and check for multicollinearity again.
 
+<a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code11" markdown="1">
 ```r
 # Adjust our model
 model_new <- glm(Class ~ distance + NoOfPools + NoOfSites + avrain,
@@ -324,6 +342,8 @@ This refers to the required linear relationship between the predictor variables 
 
 The simplest way of checking linearity is to plot the residuals vs fitted plot using `plot()`.
 
+<a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code12" markdown="1">
 ```r
 # Assumption 3: Linearity ----
 plot(model_new, which = 1)  # Call for the 1st plot
@@ -336,6 +356,8 @@ From the plot we should find no trend in the residuals. Since the red line is ge
 
 The observations should be independent of each other i.e they should not come from repeated measurements or matched data. As we didn't collect the data, it's really hard to know if the observations are independent of each other. We can however use a __serial plot of residuals__ to observe if there is the presence of _autocorrelation_, which appears when there is a serial dependence in the measurement of observations. This plot allows us to detect the time trends in the residuals. If there is no autocorrelation, we'll expect to see _no tracking of the residuals_, i.e. the closer observations do not have similar values. The plot is expected to be highly zig-zagged.
 
+<a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="13">
 ```r
 # Assumption 4: Independence ----
 plot(model$residuals, type = "o")
@@ -354,6 +376,8 @@ Provided that we are looking at 7 environmental variables, 212 observations are 
 
 After ensuring that the assumptions are met and refitting our model, we can finally move on to look at the results the model gave us! We'll first be using `summary()` to obtain a basic idea how the model looks like. Then we'll conduct an ANOVA using `anova()` to confirm our understanding. Sometimes, if the sample size is not large enough, the results obtained can be quite different.
 
+<a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code01" markdown="14">
 ```r
 # Interpreting the results ----
 
@@ -426,6 +450,8 @@ The probability of the presence of frogs can then be computed at any given "dist
 
 Let's visualise our new model now and compare it with our first plot where we correlate the probability of frogs' presence with all the environmental variables.
 
+<a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code15" markdown="1">
 ```r
 # Comparing the graph of distance only and the previous plot_1
 (plot_2 <-
@@ -457,6 +483,8 @@ We can see that the 2 plots look very similar, even when we take away all other 
 
 Now we have the model to make predictions on the probability of the presence of frogs in the test data we created earlier on. Same for linear models, we use `predict()` to make predictions. However, if we use it on a logistic regression model, it will predict the log odds (i.e. the log values of probabilities) of the response variable which is not what we want. To obtain predicted values that lie within the 0 and 1 range, we'll use `predict()` and `plogis()` together. `plogis()` is doing the inverse logarithms where it converts the log odds into probabilities that lie within 0 and 1 range. Alternatively, we can still use `predict()` but adding the `type = "response"` argument in contrast to doing linear regression model prediction.
 
+<a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code16" markdown="1">
 ```r
 # Predict the probabilities of presence on test data ----
 
@@ -478,6 +506,8 @@ So after doing the predictions, we now have a set of values (i.e. the probabilit
 
 By convention, the probability cutoff is 0.5. Nonetheless, tuning the probability cutoff can improve the accuracy. The `optimalCutoff()` function from the package `InformationValue` helps us find the optimal cutoff to improve the prediction of 1’s, 0’s, both 1’s and 0’s and reduce the misclassification error. Lets compute the optimal score that minimises the misclassification error for our model.
 
+<a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code17" markdown="1">
 ```r
 # Model accuracy ----
 
@@ -492,6 +522,8 @@ opt_cut_off <- optimalCutoff(test_data$pres.abs, test_data$prob)
 
 After finding the optimal probability cutoff (0.519), let's categorise the observations based on the predicted probabilities. The predicted probabilities larger than 0.519 will be classed as "1" ("present"). Otherwise, they will be classed as "0" ("absent")
 
+<a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code18" markdown="1">
 ```r
 # Categorise individuals into 2 classes based on their predicted probabilities
 # So if probability of response > 0.519, it will be classified as an event (Present = 1)
@@ -505,6 +537,8 @@ We can then calculate the accuracy of the model which is measured as the proport
 
 To change a factor variable into numeric values can be quite tricky. If we don't change the factor variable to characters first before converting it to numeric values, then the converted values can be quite funny and not what we want.
 
+<a id="Acode19" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code19" markdown="1">
 ```r
 # Change the pres.abs. to numeric values
 test_data$pres.abs <- as.numeric(as.character(test_data$pres.abs))
@@ -519,6 +553,8 @@ The model accuracy is 72.6% which is not bad!
 
 Let's plot the prediction graph to visualise our predictions on the test data!
 
+<a id="Acode20" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
+<section id= "code20" markdown="1">
 ```r
 # Plot the prediction graph ----
 
