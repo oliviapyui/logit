@@ -36,11 +36,18 @@ In the first part of the tutorial, we've learned how to create a general linear 
 
 ## What is a logistic regression model and why?
 
+## What is a logistic regression model and why?
+
 In linear regression, the response variable (y) can only be continuous. However, in some cases the response variable is categorial or discrete e.g. presence vs absence, true vs false, alive vs death. Therefore, we can't always use linear regression to model our output when the response variable is a binary categorial variable. This is where a logistic regression model comes into play. It gives us a mathematical equation to determine the probability of an event taken place.
-The use of statistic models to predict the likely occurrence of an event is gaining importance in wildlife management and conservation planning. Logistic regression in particular often helps ecologists to model the presence and absence of a species in the survey sites in respond to a set of environmental variables. It is also often used to predict a species' response to environmental perturbations.
+
+<center><img src="{{ site.baseurl }}/image/image1.png" alt="Img" style="width: 800px;"/></center>
+
+The use of statistic models to predict the likely occurrence of an event is gaining importance in __wildlife management__ and __conservation planning__. Logistic regression in particular often helps ecologists to model the presence and absence of a species in the survey sites in respond to a set of environmental variables. It is also often used to predict a species' response to environmental perturbations.
+
 Here, we'll examine how the different environmental variables affect the presence of frogs and predict the probability of frogs presence. The frogs' presence here is a binomial variable because the response is either "present" or "absent".
 
 You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="blank">this GitHub repository</a>. Click `clone and download` and download the repository as a zip file, then unzip it.
+
 
 <a name="one"></a>
 
