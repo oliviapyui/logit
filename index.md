@@ -29,7 +29,7 @@ Logistic Regression Model
 
 #### <a href="#four"> 4. Building a logistic regression model</a>
 
-This tutorial is the continuation of the tutorial on linear modelling, you can check out <a href = "https://ourcodingclub.github.io/2017/02/28/modelling.html#distributions" target="_blank">"Intro to Data Manipulation"</a> here. if you are still wondering what types of data distribution there are and how a general linear model is built!
+This tutorial is the continuation of the tutorial on linear modelling, you can check out <a href = "https://ourcodingclub.github.io/2017/02/28/modelling.html#distributions" target="_blank">"From distributions to linear models"</a> here. if you are still wondering what types of data distribution there are and how a general linear model is built!
 
 In the first part of the tutorial, we've learned how to create a general linear model with a Gaussian data distribution, that is when the data are normally distributed and homoscedastic. We've also slightly looked at how to run a model with a Poisson or binomial distribution. However, that is not enough to give us a more accurate results. Here, we'll learn about 1) cleaning the dataset ready for modelling, 2) handling class imbalance, 3) building the logistic regression model and at last 4) predicting the accuracy of the test data.
 
