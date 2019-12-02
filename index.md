@@ -57,6 +57,7 @@ Open a new R script in RStudio and add in some details (e.g. title of the script
 
 <a id="Acode01" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="1">
+
 ```r
 # Please install these packages first if you don't already have them
 # install.packages("DAAG")
@@ -80,6 +81,7 @@ Let's use `glimpse()` from `dplyr` to explore the dataset and see if there are a
 
 <a id="Acode02" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code02" markdown="1">
+
 ```r
 # Explore the data ----
 
@@ -92,6 +94,7 @@ Data cleaning is an essential step in machine learning (i.e. the use of statisti
 
 <a id="Acode03" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code03" markdown="1">
+
 ```r
 # 1. Prepare and clean the data ----
 
@@ -123,6 +126,7 @@ The response (dependent) variable and explanatory (independent) variables are nu
 
 <a id="Acode04" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code04" markdown="1">
+
 ```r
 # Select only the columns we need
 frogs <- select(frogs, -c(northing, easting))  # select all except northing and easting
@@ -143,6 +147,7 @@ To split the data, we'll use `createDataPartition()` from the package `caret`. `
 
 <a id="Acode05" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code05" markdown="1">
+
 ```r
 # 2. Data splitting ----
 
@@ -174,6 +179,7 @@ The use of `createDataPartition` will preserve the proportion of the classes in 
 
 <a id="Acode06" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code06" markdown="1">
+
 ```r
 # 3. Class imbalance ----
 
@@ -209,6 +215,7 @@ Here, __upsampling__ is preferred as it implies no loss of information and we do
 
 <a id="Acode07" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code07" markdown="1">
+
 ```r
 # Upsampling ----
 
@@ -240,6 +247,7 @@ Before we actually build our model, let's visualise how our data look like using
 
 <a id="Acode08" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code08" markdown="1">
+
 ```r
 # 3. The logistic regression model ----
 
@@ -277,6 +285,7 @@ Fitting a logistic regression model is very close to what we did in the previous
 
 <a id="Acode09" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code09" markdown="1">
+
 ```r
 # Using generalised linear model
 model <- glm(Class ~. ,  # "." indicated all other variables
@@ -301,6 +310,7 @@ To calculate VIF, we can use the `vif()` function.
 
 <a id="Acode10" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code10" markdown="1">
+
 ```r
 # Checking assumptions ----
 
@@ -320,6 +330,7 @@ This is probably because temperature generally decreases with increasing altitud
 
 <a id="Acode11" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code11" markdown="1">
+
 ```r
 # Adjust our model
 model_new <- glm(Class ~ distance + NoOfPools + NoOfSites + avrain,
@@ -344,6 +355,7 @@ The simplest way of checking linearity is to plot the residuals vs fitted plot u
 
 <a id="Acode12" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code12" markdown="1">
+
 ```r
 # Assumption 3: Linearity ----
 plot(model_new, which = 1)  # Call for the 1st plot
@@ -358,6 +370,7 @@ The observations should be independent of each other i.e they should not come fr
 
 <a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="13">
+
 ```r
 # Assumption 4: Independence ----
 plot(model$residuals, type = "o")
@@ -378,6 +391,7 @@ After ensuring that the assumptions are met and refitting our model, we can fina
 
 <a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code01" markdown="14">
+
 ```r
 # Interpreting the results ----
 
@@ -452,6 +466,7 @@ Let's visualise our new model now and compare it with our first plot where we co
 
 <a id="Acode15" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code15" markdown="1">
+
 ```r
 # Comparing the graph of distance only and the previous plot_1
 (plot_2 <-
@@ -485,6 +500,7 @@ Now we have the model to make predictions on the probability of the presence of 
 
 <a id="Acode16" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code16" markdown="1">
+
 ```r
 # Predict the probabilities of presence on test data ----
 
@@ -508,6 +524,7 @@ By convention, the probability cutoff is 0.5. Nonetheless, tuning the probabilit
 
 <a id="Acode17" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code17" markdown="1">
+
 ```r
 # Model accuracy ----
 
@@ -524,6 +541,7 @@ After finding the optimal probability cutoff (0.519), let's categorise the obser
 
 <a id="Acode18" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code18" markdown="1">
+
 ```r
 # Categorise individuals into 2 classes based on their predicted probabilities
 # So if probability of response > 0.519, it will be classified as an event (Present = 1)
@@ -539,6 +557,7 @@ To change a factor variable into numeric values can be quite tricky. If we don't
 
 <a id="Acode19" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code19" markdown="1">
+
 ```r
 # Change the pres.abs. to numeric values
 test_data$pres.abs <- as.numeric(as.character(test_data$pres.abs))
@@ -555,6 +574,7 @@ Let's plot the prediction graph to visualise our predictions on the test data!
 
 <a id="Acode20" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
 <section id= "code20" markdown="1">
+
 ```r
 # Plot the prediction graph ----
 
