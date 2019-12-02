@@ -33,14 +33,12 @@ This tutorial is the continuation of the tutorial on linear modelling, you can c
 
 In the first part of the tutorial, we've learned how to create a general linear model with a Gaussian data distribution, that is when the data are normally distributed and homoscedastic. We've also slightly looked at how to run a model with a Poisson or binomial distribution. However, that is not enough to give us a more accurate results. Here, we'll learn about 1) cleaning the dataset ready for modelling, 2) handling class imbalance, 3) building the logistic regression model and at last 4) predicting the accuracy of the test data.
 
-
-## What is a logistic regression model and why?
-
 ## What is a logistic regression model and why?
 
 In linear regression, the response variable (y) can only be continuous. However, in some cases the response variable is categorial or discrete e.g. presence vs absence, true vs false, alive vs death. Therefore, we can't always use linear regression to model our output when the response variable is a binary categorial variable. This is where a logistic regression model comes into play. It gives us a mathematical equation to determine the probability of an event taken place.
 
 <center><img src="{{ site.baseurl }}/image/image1.png" alt="Img" style="width: 800px;"/></center>
+Source: <a href="https://medium.com/@maithilijoshi6/a-comparison-between-linear-and-logistic-regression-8aea40867e2d" target="blank">Medium</a>
 
 The use of statistic models to predict the likely occurrence of an event is gaining importance in __wildlife management__ and __conservation planning__. Logistic regression in particular often helps ecologists to model the presence and absence of a species in the survey sites in respond to a set of environmental variables. It is also often used to predict a species' response to environmental perturbations.
 
