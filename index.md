@@ -47,7 +47,7 @@ The use of statistic models to predict the likely occurrence of an event is gain
 
 Here, we'll examine how the different environmental variables affect the presence of frogs and predict the probability of frogs presence. The frogs' presence here is a binomial variable because the response is either "present" or "absent".
 
-You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="blank">this GitHub repository</a>. Click `clone and download` and download the repository as a zip file, then unzip it.
+You can get all of the resources for this tutorial from <a href="https://github.com/oliviapyui/logitrepo" target="blank">this GitHub repository</a>. Click `clone and download` and download the repository as a zip file, then unzip it.
 
 <a name="one"></a>
 
@@ -599,4 +599,44 @@ Let's plot the prediction graph to visualise our predictions on the test data!
          y = "Probability of frogs' presence\n"))
 ```
 
-+++ INSERT pred_plot ++++
+<center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img"></center>
+
+
+
+
+
+
+
+<hr>
+<hr>
+
+#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
+
+#### If you have any questions about completing this tutorial, please contact us on ourcodingclub@gmail.com
+
+#### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
+
+<ul class="social-icons">
+	<li>
+		<h3>
+			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
+		</h3>
+	</li>
+</ul>
+
+### &nbsp;&nbsp;Subscribe to our mailing list:
+<div class="container">
+	<div class="block">
+        <!-- subscribe form start -->
+		<div class="form-group">
+			<form action="https://getsimpleform.com/messages?form_api_token=de1ba2f2f947822946fb6e835437ec78" method="post">
+			<div class="form-group">
+				<input type='text' class="form-control" name='Email' placeholder="Email" required/>
+			</div>
+			<div>
+                        	<button class="btn btn-default" type='submit'>Subscribe</button>
+                    	</div>
+                	</form>
+		</div>
+	</div>
+</div>
