@@ -6,7 +6,8 @@ date: 2 December 2018
 layout: default
 tags: modelling
 ---
-Logistic Regression Model
+# Logistic Regression Model
+## From distributions to linear models - Part 2
 
 <div class="block">
 	<center>
@@ -25,6 +26,7 @@ Logistic Regression Model
 #### <a href="#three"> 3. Handling class imbalance</a>
 
 #### <a href="#four"> 4. Building a logistic regression model</a>
+
 
 This tutorial is the continuation of the tutorial on linear modelling, you can check out <a href = "https://ourcodingclub.github.io/2017/02/28/modelling.html#distributions" target="_blank">"From distributions to linear models"</a> here. if you are still wondering what types of data distribution there are and how a general linear model is built!
 
@@ -363,12 +365,12 @@ plot(model_new, which = 1)  # Call for the 1st plot
 
 From the plot we should find no trend in the residuals. Since the red line is generally lying on the grey horizontal line, we can say that the assumption of linearity is met.
 
-#### __Assumption 4: Observation independence___
+#### __Assumption 4: Observation independence__
 
 The observations should be independent of each other i.e they should not come from repeated measurements or matched data. As we didn't collect the data, it's really hard to know if the observations are independent of each other. We can however use a __serial plot of residuals__ to observe if there is the presence of _autocorrelation_, which appears when there is a serial dependence in the measurement of observations. This plot allows us to detect the time trends in the residuals. If there is no autocorrelation, we'll expect to see _no tracking of the residuals_, i.e. the closer observations do not have similar values. The plot is expected to be highly zig-zagged.
 
 <a id="Acode13" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="13">
+<section id= "code13" markdown="1">
 
 ```r
 # Assumption 4: Independence ----
@@ -389,7 +391,7 @@ Provided that we are looking at 7 environmental variables, 212 observations are 
 After ensuring that the assumptions are met and refitting our model, we can finally move on to look at the results the model gave us! We'll first be using `summary()` to obtain a basic idea how the model looks like. Then we'll conduct an ANOVA using `anova()` to confirm our understanding. Sometimes, if the sample size is not large enough, the results obtained can be quite different.
 
 <a id="Acode14" class="copy" name="copy_pre" href="#"> <i class="fa fa-clipboard"></i> Copy Contents </a><br>
-<section id= "code01" markdown="14">
+<section id= "code14" markdown="1">
 
 ```r
 # Interpreting the results ----
