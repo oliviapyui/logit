@@ -399,6 +399,7 @@ After ensuring that the assumptions are met and refitting our model, we can fina
 summary(model_new)
 anova(model_new, test = "Chisq")
 ```
+
 These are the results that we obtained.
 
 ```r
@@ -449,7 +450,10 @@ avrain     1    0.407       183     224.03         0.5234
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
+
 The summary output gives us this logistic equation:
+
+<div class="bs-callout-yellow" markdown="1">
 
 p = exp(2.38 - 0.000674 x distance + 0.00890 x NoOfPools - 0.0836 x NoOfSites - 0.00954 x avrain)/{1 + exp(2.38 - 0.000674 x distance + 0.00890 x NoOfPools - 0.0836 x NoOfSites - 0.00954 x avrain)}
 
@@ -462,6 +466,8 @@ The logistic equation can hence be considered as:
 p = exp(2.38 - 0.000674 x distance)/{1 + exp(2.38 - 0.000674 x distance)}
 
 The probability of the presence of frogs can then be computed at any given "distance to the nearest extant population".
+
+</div>
 
 Let's visualise our new model now and compare it with our first plot where we correlate the probability of frogs' presence with all the environmental variables.
 
@@ -620,30 +626,6 @@ Let's plot the prediction graph to visualise our predictions on the test data!
 	</li>
 </ul>
 
-<h3>&nbsp; Related tutorials:</h3>
-
-{% assign posts_thresh = 8 %}
-
-<ul>
-  {% assign related_post_count = 0 %}
-  {% for post in site.posts %}
-    {% if related_post_count == posts_thresh %}
-      {% break %}
-    {% endif %}
-    {% for tag in post.tags %}
-      {% if page.tags contains tag %}
-        <li>
-            <a href="{{ site.url }}{{ post.url }}">
-	    &nbsp; - {{ post.title }}
-            </a>
-        </li>
-        {% assign related_post_count = related_post_count | plus: 1 %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</ul>
-<br>
 
 ### &nbsp;&nbsp;Subscribe to our mailing list:
 <div class="container">
