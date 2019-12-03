@@ -1,14 +1,11 @@
 ---
-layout: post
-title: Logistic Regression Model
+title: "Logistic Regression Model"
 subtitle: From distributions to linear models - Part 2
-date: 2019-12-2 08:00:00
-author: Olivia PY Lin
-meta: "Tutorials"
+author: "Olivia Lin"
+date: 2 December 2018
+layout: default
 tags: modelling
 ---
-
-
 Logistic Regression Model
 
 <div class="block">
@@ -39,7 +36,7 @@ In the first part of the tutorial, we've learned how to create a general linear 
 In linear regression, the response variable (y) can only be continuous. However, in some cases the response variable is categorial or discrete e.g. presence vs absence, true vs false, alive vs death. Therefore, we can't always use linear regression to model our output when the response variable is a binary categorial variable. This is where a logistic regression model comes into play. It gives us a mathematical equation to determine the probability of an event taken place.
 
 <center><img src="{{ site.baseurl }}/image/image1.png" alt="Img" style="width: 800px;"/></center>
-Source: <a href="https://medium.com/@maithilijoshi6/a-comparison-between-linear-and-logistic-regression-8aea40867e2d" target="blank">Medium</a>
+<center>Source: <a href="https://medium.com/@maithilijoshi6/a-comparison-between-linear-and-logistic-regression-8aea40867e2d" target="blank">Medium</a></center>
 
 
 
@@ -252,27 +249,29 @@ Before we actually build our model, let's visualise how our data look like using
 # 3. The logistic regression model ----
 
 # Let's visualise our data first ----
-(plot_1 <-
-   ggplot(up_train,
-          aes(x = altitude + distance + NoOfPools + NoOfSites +
-                  avrain + meanmin + meanmax,
-              y = as.numeric(as.character(Class)))) +  # change "Class" to numeric values
-  geom_point(alpha = 0.2, colour = "rosybrown2") +  # plot the classes of each observation
-  geom_smooth(method = "glm",  # add the curve
-              method.args = list(family = "binomial"),
-              colour = "paleturquoise3",  # colour of the curve
-              fill = "azure3") +  # colour of the SE area
-  theme_bw() +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major.x= element_blank(),
-        plot.margin = unit(c(1,1,1,1), units = , "cm"),
-        plot.title = element_text(face = "bold", size = 18, hjust = 0),
-        axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14)) +
-  scale_y_continuous(breaks = c(0,1)) +
-  labs(title = "Logistic Regression Model\n",  #  "\n" indicates where the space is added
-       y = "Probability of the presence of frogs\n",
-       x = "\naltitude + distance + NoOfPools + NoOfSites+\navrain + meanmin + meanmax"))
+(plot_1 <- 
+    ggplot(up_train, 
+           aes(x = altitude + distance + NoOfPools + NoOfSites + 
+                   avrain + meanmin + meanmax, 
+               y = as.numeric(as.character(Class)))) +  # change "Class" to numeric values
+   geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +  # plot the classes of each observation
+   geom_smooth(method = "glm",  # add the curve
+               method.args = list(family = "binomial"),
+               colour = "paleturquoise3",  # colour of the curve
+               fill = "azure3",
+               size = 1) +  # colour of the SE area
+   theme_bw() +
+   theme(panel.grid.minor = element_blank(),
+         panel.grid.major.x= element_blank(),
+         plot.margin = unit(c(1,1,1,1), units = , "cm"),
+         plot.title = element_text(face = "bold", size = 10, hjust = 0),
+         axis.text = element_text(size = 8),
+         axis.title = element_text(size = 8)) +
+   labs(title = "Logistic Regression Model 1\n",  #  "\n" indicates where the space is added
+        y = "Probability of the presence of frogs\n",
+        x = "\naltitude + distance + NoOfPools + NoOfSites+
+        \navrain + meanmin + meanmax") +
+  ggsave("image/plot_1.png", width = 5, height = 4, dpi = 800))
 ```
 
 <center><img src="{{ site.baseurl }}/image/plot_1.png" alt="Img" style="width: 700px; height: 550px"/></center>
@@ -469,25 +468,27 @@ Let's visualise our new model now and compare it with our first plot where we co
 
 ```r
 # Comparing the graph of distance only and the previous plot_1
-(plot_2 <-
-    ggplot(up_train,
-           aes(x = distance,
-               y = as.numeric(as.character(Class)))) +
-    geom_point(alpha = 0.2, colour = "rosybrown2") +
+(plot_2 <- 
+    ggplot(up_train, 
+           aes(x = distance, 
+               y = as.numeric(as.character(Class)))) +  
+    geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +  
     geom_smooth(method = "glm",  # add the curve
                 method.args = list(family = "binomial"),
-                colour = "paleturquoise3",
-                fill = "azure3") +
+                colour = "paleturquoise3", 
+                fill = "azure3",
+                size = 1) +
     theme_bw() +
     theme(panel.grid.minor = element_blank(),
           panel.grid.major.x= element_blank(),
           plot.margin = unit(c(1,1,1,1), units = , "cm"),
-          plot.title = element_text(face = "bold", size = 18, hjust = 0),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 14)) +
-    labs(title = "Logistic Regression Model 2\n",
+          plot.title = element_text(face = "bold", size = 10, hjust = 0),
+          axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8)) +
+    labs(title = "Logistic Regression Model 2\n",  
          y = "Probability of the presence of frogs\n",
-         x = "\nDistance to the nearest extant population (m)"))
+         x = "\nDistance to the nearest extant population (m)") +
+    ggsave("image/plot_2.png", width = 5, height = 4, dpi = 800))
 ```
 
 <left><img src="{{ site.baseurl }}/image/plot_1.png" alt="Img" style="width: 700px; height: 550px"/></left><right><img src="{{ site.baseurl }}/image/plot_2.png" alt="Img" style="width: 700px; height: 550px"/></right>
@@ -576,27 +577,26 @@ Let's plot the prediction graph to visualise our predictions on the test data!
 <section id= "code20" markdown="1">
 
 ```r
-# Plot the prediction graph ----
-
 (pred_plot <- ggplot(test_data, aes(x = distance, y = predict_class)) +
-    geom_point(alpha = 0.2, colour = "rosybrown2", size = 5) +
-    stat_smooth(method = "glm",
+    geom_point(alpha = 0.2, colour = "rosybrown2", size = 2) +
+    stat_smooth(method = "glm", 
                 method.args = list(family = "binomial"),
                 colour = "indianred",
                 fill = "azure3",
-                size = 2) +
+                size = 1) +
     theme_bw() +
     theme(panel.grid.minor = element_blank(),
           panel.grid.major.x= element_blank(),
           plot.margin = unit(c(1,1,1,1), units = , "cm"),
-          plot.title = element_text(face = "bold", size = 18, hjust = 0),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(size = 14)) +
+          plot.title = element_text(face = "bold", size = 10, hjust = 0),
+          axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8)) +
     scale_y_continuous(limits = c(0,1)) +  # Set min and max y values at 0 and 1 respectively
     scale_x_continuous(limits = c(min(test_data$distance), max(test_data$distance))) +
     labs(title = "Predicting frogs' presence on test data\n",
          x = "\nDistance to nearest extant population (m)",  #  "\n" adds space above x-axis title
-         y = "Probability of frogs' presence\n"))
+         y = "Probability of the presence of frogs\n") +
+    ggsave("image/pred_plot.png", width = 5, height = 4, dpi = 800))
 ```
 
 <center><img src="{{ site.baseurl }}/image/pred_plot.png" alt="Img" style="width: 700px; height: 550px"/></center>
@@ -617,6 +617,31 @@ Let's plot the prediction graph to visualise our predictions on the test data!
 		</h3>
 	</li>
 </ul>
+
+<h3>&nbsp; Related tutorials:</h3>
+
+{% assign posts_thresh = 8 %}
+
+<ul>
+  {% assign related_post_count = 0 %}
+  {% for post in site.posts %}
+    {% if related_post_count == posts_thresh %}
+      {% break %}
+    {% endif %}
+    {% for tag in post.tags %}
+      {% if page.tags contains tag %}
+        <li>
+            <a href="{{ site.url }}{{ post.url }}">
+	    &nbsp; - {{ post.title }}
+            </a>
+        </li>
+        {% assign related_post_count = related_post_count | plus: 1 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</ul>
+<br>
 
 ### &nbsp;&nbsp;Subscribe to our mailing list:
 <div class="container">
